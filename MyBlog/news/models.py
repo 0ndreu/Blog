@@ -38,7 +38,7 @@ class News (models.Model):
     """
     user = models.ForeignKey(User,          # у одного автора много постов
                              verbose_name='Автор',
-                             on_delete=models.CASCADE)      # при удалении юзера все его новости
+                             on_delete=models.CASCADE)      # при удалении юзера все его новости удаляются
     title = models.CharField(verbose_name='Заголовок', max_length=100)
     category = models.ForeignKey(Category,          # в одной категории много новостей
                                  verbose_name='Категория',
@@ -57,3 +57,25 @@ class News (models.Model):
 
     def __str__(self):
         return self.title  # Возвращает название статьи
+
+
+class Comments(models.Model):
+    """
+    таблица комментариев к новостям
+    """
+    text = models.TextField('Комментарий')
+    new = models.ForeignKey(News,           # для использования внешнего ключа, класс News уже должен быть объявлен
+                            verbose_name='новость',
+                            on_delete=models.CASCADE)  # при удалении поста удаляются все комметарии
+    user = models.ForeignKey(User,          # у одного автора много комментариев
+                             verbose_name='Пользователь',
+                             on_delete=models.CASCADE)
+    created = models.DateTimeField('Дата создания', auto_now_add=True, null=True)
+    moderation = models.BooleanField("Модерация", default=False)
+
+    class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
+
+    def __str__(self):
+        return "{}".format(self.user)

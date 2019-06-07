@@ -2,7 +2,7 @@ from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
 
 # Register your models here.
-from news.models import Tag, Category, News
+from news.models import Tag, Category, News, Comments
 
 
 class NewsAdmin(SummernoteModelAdmin):
@@ -13,3 +13,9 @@ admin.site.register(Tag)
 admin.site.register(Category)
 admin.site.register(News, NewsAdmin)
 
+
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('user', 'new', 'created', 'moderation')     # отображение в админке
+
+
+admin.site.register(Comments, CommentAdmin)
