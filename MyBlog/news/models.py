@@ -78,4 +78,4 @@ class Comments(models.Model):
         verbose_name_plural = 'Комментарии'
 
     def __str__(self):
-        return "{}".format(self.user)
+        return "{}".format(self.user)       # вывод пользователя

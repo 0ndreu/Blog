@@ -6,13 +6,34 @@
      <h1>{{ new.title }}</h1>
     <p>{{ new.text | safe }}</p><hr> <!-- SAFE чтобы отобразились результаты в редакторе текста ><!-->
     {{ new.category }}<br>
-    <!--небольшая непонятка, почему new а не news. мб потому что в new_list в цикле указывали new(???)>  <!-->
     {{ new.created }}<br>
     Тэги: {% for tag in new.tags.all %}
             {{ tag.title }}
         {% endfor %}<br>
-    Автор: {{ new.user }}
+    Автор: {{ new.user }} <hr>
 
+
+     {% for comment in comments %}           <!-- Комментарии по методу из вьюс>  <!-->
+         Пользователь - {{ comment.user }}<br>
+         Комментарий - {{ comment.text }}<br>
+         Дата - {{ comment.created }} <br><br>
+     {%  endfor %}
+
+     {#  for comment in new.comments_set.all #}      <!-- Второй способ комментариев. Минус: нет логики, т. е. нельзя обрабатывать то, где комменты сможерированы>  <!-->
+{#          Пользователь - {{ comment.user }}<br>#}
+{#         Комментарий - {{ comment.text }}<br>#}
+{#         Дата - {{ comment.created }} <br><br>#}
+     {# endfor #}
+
+     {% if user.is_active %}
+         <form action="" method="post"> <!-- пустой экшн - отправить на ту же страницу ><!-->
+             {% csrf_token %}           <!-- при любом запросе к серверу ><!-->
+             {{ form.as_p }} <br>
+             <button type="submit">Send</button>
+         </form>
+     {% else %}
+        <h2>Авторизируйтесь, чтобы писать комментарии</h2>
+     {% endif %}
 {% endblock %}
 <!-- ЕСЛИ ЧТО ТО ПОМЕНЯТЬ В ТЕМПЛЕЙТС/БЭЙС, ТО ИЗМЕНИТСЯ ВО ВСЕХ ОСТАЛЬНЫХ ШАБЛОНАХ ><!-->
 
