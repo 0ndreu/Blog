@@ -1,0 +1,18 @@
+{% extends 'news/base.html' %}
+{% block desc %}{{ new.description }}{% endblock desc %}
+{% block keywords %}{{ new.keywords }}{% endblock keywords %}
+{% block title %} {{ new.title }}{% endblock title %}
+ {% block content %} <!-- все, что написано между откр и закр блоками будет меняться ><!-->
+     <h1>{{ new.title }}</h1>
+    <p>{{ new.text }}</p><hr>
+    {{ new.category }}<br>
+    <!--небольшая непонятка, почему new а не news. мб потому что в new_list в цикле указывали new(???)>  <!-->
+    {{ new.created }}<br>
+    Тэги: {% for tag in new.tags.all %}
+            {{ tag.title }}
+        {% endfor %}<br>
+    Автор: {{ new.user }}
+
+{% endblock %}
+<!-- ЕСЛИ ЧТО ТО ПОМЕНЯТЬ В ТЕМПЛЕЙТС/БЭЙС, ТО ИЗМЕНИТСЯ ВО ВСЕХ ОСТАЛЬНЫХ ШАБЛОНАХ ><!-->
+
