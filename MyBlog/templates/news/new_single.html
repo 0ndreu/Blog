@@ -4,7 +4,7 @@
 {% block title %} {{ new.title }}{% endblock title %}
  {% block content %} <!-- все, что написано между откр и закр блоками будет меняться ><!-->
      <h1>{{ new.title }}</h1>
-    <p>{{ new.text }}</p><hr>
+    <p>{{ new.text | safe }}</p><hr> <!-- SAFE чтобы отобразились результаты в редакторе текста ><!-->
     {{ new.category }}<br>
     <!--небольшая непонятка, почему new а не news. мб потому что в new_list в цикле указывали new(???)>  <!-->
     {{ new.created }}<br>
