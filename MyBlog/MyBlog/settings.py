@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'news',
+    'ticket',
 
     'django_summernote',
 
@@ -113,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'ru-ru'  #руссификация адм панели
+LANGUAGE_CODE = 'ru-ru'  # руссификация адм панели
 
 TIME_ZONE = 'UTC'
 
