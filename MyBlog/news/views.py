@@ -14,10 +14,10 @@ def news_list(request):
 
 def new_single(request, pk):           # pk is id of article
     """
-    вызов полной сатьи
+    вызов полной сатьи и комментариев к ней
     """
     new = get_object_or_404(News, id=pk)
-    comment = Comments.objects.filter(new=pk, moderation=True)       # все записи, где номер статьи = pk и комментарии модерированы
+    comment = Comments.objects.filter(new=pk)  # moderation=True)       # все записи, где номер статьи = pk (и комментарии модерированы)
     if request.method == 'POST':
         form = CommentForm(request.POST)        # пользователь уже ввел
         if form.is_valid():

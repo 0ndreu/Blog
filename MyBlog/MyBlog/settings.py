@@ -36,9 +36,16 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
+
     'news',
+
     'django_summernote',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',  # для регистрации через соцсети
 ]
 
 MIDDLEWARE = [
@@ -124,3 +131,18 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1 # для allauth
+
+LOGIN_REDIRECT_URL = '/'    # куда перенаправляет после залогинивания   смотреть доки на readthedocs
+LOGIN_URL = 'accounts/login'    # если не залогинен, то на этот адрес
+EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'  # как будет отправляться почта. если пользователю, то smtp, а так как на машине разработчика, то консоль
