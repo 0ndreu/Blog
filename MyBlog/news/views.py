@@ -3,6 +3,8 @@ from news.forms import CommentForm
 # Create your views here.
 from news.models import News, Comments
 
+from datetime import datetime, timedelta
+
 
 def news_list(request):
     """
@@ -33,3 +35,19 @@ def new_single(request, pk):           # pk is id of article
                   {"new": new,
                    'comments': comment,        # выше первый метод вывода комментариев
                    "form": form})          # потом перейти в УРЛ, который будет запускать эту функцию
+
+
+def news_filter(request, pk):       # id кнопки, которую нажмем
+    """
+    фильтр статей по дате
+    """
+    news = News.objects.all()
+    if pk == 1:
+        now = datetime.now() - timedelta(minutes=60*24)     # сегодня - (60мин * 24часа)
+        news = news.filter(created__gte=now)        # __gte >=
+    elif pk == 2:
+        now = datetime.now() - timedelta(minutes=60*24*30)
+        news = news.filter(created__gte=now)
+    else:
+        news = news
+    return render(request, 'news/news_list.html', {'news': news})
