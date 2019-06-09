@@ -1,8 +1,8 @@
-{% extends 'news/base.html' %}
+{% extends 'news/base.html' %}  <!-- так же подключать жс, в статике ><!-->
 {% block desc %}{{ new.description }}{% endblock desc %}
 {% block keywords %}{{ new.keywords }}{% endblock keywords %}
 {% block title %} {{ new.title }}{% endblock title %}
- {% block content %} <!-- все, что написано между откр и закр блоками будет меняться ><!-->
+{% block content %} <!-- все, что написано между откр и закр блоками будет меняться ><!-->
      <h1>{{ new.title }}</h1>
     <p>{{ new.text | safe }}</p><hr> <!-- SAFE чтобы отобразились результаты в редакторе текста ><!-->
     {{ new.category }}<br>

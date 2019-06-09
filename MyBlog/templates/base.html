@@ -1,3 +1,4 @@
+{% load staticfiles %}  <!-- подключение загрузки статических файлов цсс/жс ><!-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,10 +6,20 @@
     <meta name="description" content="{% block desc %}{% endblock desc %}">
     <meta name="keywrods" content="{% block keywords %}{% endblock keywords %}">
     <title>{% block title %} {% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
- {% block content %} <!-- все, что написано между откр и закр блоками будет меняться ><!-->
+    <div class="page">
+    <input type="search" value="" name="search" placeholder="Поиск">
+    {% block search %}
 
-{% endblock %}  <!-- + allauth ищет base.html и этот блок и все в него добавляет. посмотреть в lib/side-packeges/allouth. пожно отуда достать шаблон, положить в свой templаte и верстать как уже будет нужно><!-->
+    {% endblock search %}
+
+    <div class="main">
+    {% block content %} <!-- все, что написано между откр и закр блоками будет меняться ><!-->
+
+    {% endblock %}  <!-- + allauth ищет base.html и этот блок и все в него добавляет. посмотреть в lib/side-packeges/allouth. пожно отуда достать шаблон, положить в свой templаte и верстать как уже будет нужно><!-->
+    </div>
+    </div>
 </body>
 </html>
