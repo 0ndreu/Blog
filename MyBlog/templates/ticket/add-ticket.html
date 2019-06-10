@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>Привеееееет!</h1>
-<h1>{{ text }}</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p}}          <!-- as_p - каждый элемент начинается с новой строки ><!-->
+        <button type="submit">Send</button>
+    </form>
+{% endblock content %}
